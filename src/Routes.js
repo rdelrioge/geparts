@@ -1,14 +1,8 @@
 import React from "react";
 import { Route, withRouter, Link } from "react-router-dom";
 import { AnimatedSwitch } from "./AnimatedSwitch";
+import Edit from "./components/editor";
 
-/**
- * The ".page" class is key to animating a full page and not receive bumps while
- * animating pages in/out. It is position: fixed to allow the animation to play
- * without the DOM elements messing up.
- *
- * Try to remove .page to see the effect.
- */
 const home = () => (
   <div className="page">
     <div className="firstSelector">
@@ -22,11 +16,6 @@ const readonly = () => (
     <h1>Hello FE</h1>
   </div>
 );
-const edit = () => (
-  <div className="page">
-    <h1>Hello Editor</h1>
-  </div>
-);
 
 const routes = [
   {
@@ -38,7 +27,7 @@ const routes = [
     path: "/readonly"
   },
   {
-    component: edit,
+    component: Edit,
     path: "/edit"
   }
 ];

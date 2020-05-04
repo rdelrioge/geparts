@@ -1,9 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import * as serviceWorker from "./serviceWorker";
-import "./styles.scss";
 import { BrowserRouter, Link } from "react-router-dom";
+import * as serviceWorker from "./serviceWorker";
+
+// Firebase
+import firebase from "firebase/app";
+import fbconfig from "./fbconfig";
+import "firebase/auth";
+import "firebase/firestore";
+
+import "./styles.scss";
 import Routes from "./Routes";
+
+export const fb = firebase.initializeApp(fbconfig);
+export const db = fb.firestore();
 
 function App() {
   return (
@@ -11,7 +21,9 @@ function App() {
       <div className="nav-bar">
         <Link to="/">GE Parts</Link>
       </div>
-      <Routes />
+      <div className="container">
+        <Routes />
+      </div>
     </BrowserRouter>
   );
 }

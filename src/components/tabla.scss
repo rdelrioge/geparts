@@ -1,3 +1,28 @@
+.tablaHeader {
+  background-color: #46d0f7;
+  color: white;
+  font-weight: bold;
+  font-size: 0.8em;
+  border-bottom: none;
+  display: grid;
+  margin: 0 1em;
+  padding: 0;
+  grid-template-columns: repeat(24, 1fr);
+  li {
+    list-style: none;
+    text-align: center;
+    justify-content: center;
+    max-height: 4em;
+    display: flex;
+    align-items: center;
+    height: 3em;
+    overflow-y: auto;
+  }
+  li::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 .tabla::-webkit-scrollbar {
   width: 6px;
   margin-right: -3px;
@@ -16,18 +41,16 @@
 }
 .tabla {
   overflow-y: hidden;
-    height: 80vh;
-    margin: 1em;
-    width: calc(100% + 0);
-    font-size: 0.8em;
-    margin-top: 3em;
-    margin-bottom: 3em;
-    min-width: 80%;
-    ul:hover{
-      font-weight: bold;
-    }
+  height: 80vh;
+  margin: 0 1em 3em 1em;
+  font-size: 0.8em;
+  min-width: 80%;
+  ul:hover{
+    font-weight: bold;
+  }
   ul.abierto:not(.tablaHeader){
       height: fit-content;
+      padding: 6px 0;
       li{
         max-height: fit-content;
       }
@@ -38,26 +61,41 @@
     padding: 0;
     align-items: center;
     border-bottom: 1px solid lightgray;
-    grid-template-columns: repeat(23, 1fr);
+    grid-template-columns: repeat(24, 1fr);
     li {
       list-style: none;
       text-align: center;
-      max-height: 6em;
+      max-height: 4em;
       max-width: 8em;
       overflow-y: auto;
+      button{
+        padding: 0;
+        background: none;
+        border: none;
+        outline: none;
+        svg{
+          width: 22px;
+          height: 22px;
+          zoom: 80%;
+        }
+        svg:hover{
+          margin: 3px;
+          zoom: 100%;
+        }
+      }
+      button:hover{
+        border-radius: 8px;
+        background-color: #46d0f7;
+        fill: white;
+      }
+      button:active{
+        background-color: #44a8c3;
+        fill: white;
+      }
     }
     li::-webkit-scrollbar {
       display: none;
     }
-  }
-  .tablaHeader {
-    background-color: #46d0f7;
-    color: white;
-    position: fixed;
-    margin-right: inherit;
-    margin-top: -2.4em;
-    font-weight: bold;
-    border-bottom: none;
   }
   .even {
     background-color: white;
@@ -66,4 +104,12 @@
     background-color: aliceblue;
     border-right: 1px solid lightgray;
   }
+}
+
+.sinDatos{
+  color: dimgray;
+  display: flex;
+  height: 50vh;
+  justify-content: center;
+  align-items: center;
 }

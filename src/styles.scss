@@ -1,6 +1,7 @@
 @font-face {
   font-family: inspira;
-  src: url("Inspira.ttf");
+  // src: url("Inspira.ttf"); //para codesandbox
+  src: url("./assets/Inspira.ttf"); //para vscode
 }
 
 body {
@@ -35,9 +36,7 @@ a {
         -webkit-background-clip: text;
   }
 }
-.container{
 
-}
 .page {
   padding: 10px 30px 50px 30px;
   height: 100vh;

@@ -1,38 +1,72 @@
-.input {
-  margin: auto;
-  .inputFile {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-  }
-  .file-input__label,
-      .printBtn,
-      .okbtn {
-        margin: 1em;
-        min-width: 150px;
-        cursor: pointer;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 4px;
+.editorHeader{
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  text-align: center;
+  margin: 8px 0;
+  .periodoClass{
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: auto;
+    h2{
+      margin: 8px auto;
+      color: dimgray;
+    }
+    .buttonsPeriodo{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      justify-items: center;
+      button{
+        width: 7em;
+        margin: auto;
+        background:none;
+        border: 2px dotted #46d0f7;
         font-size: 14px;
         font-weight: 600;
+        border-radius: 4px;
+        cursor: pointer;
         color: #46d0f7;
-        font-size: 14px;
-        padding: 10px 12px;
-        border: 2px dotted #46d0f7;
+        outline: none;
       }
-
-      .file-input__label:hover,
-      .printBtn:hover {
+      button:hover{
         background-color: rgba(87, 172, 241, 0.25);
       }
-      .printBtn,
-      .okbtn {
-        min-width: 178px;
-        background: none;
-      }
+    }
+  }
+  .input {
+    display: contents;
+    .inputFile {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+    }
+    .file-input__label,
+        .printBtn,
+        .okbtn {
+          margin: 1em;
+          cursor: pointer;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 4px;
+          font-size: 14px;
+          font-weight: 600;
+          color: #46d0f7;
+          font-size: 14px;
+          padding: 10px 12px;
+          border: 2px dotted #46d0f7;
+        }
+  
+        .file-input__label:hover,
+        .printBtn:hover {
+          background-color: rgba(87, 172, 241, 0.25);
+        }
+        .printBtn,
+        .okbtn {
+          min-width: 178px;
+          background: none;
+        }
+  }
 }

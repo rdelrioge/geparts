@@ -124,9 +124,9 @@ const Tabla = (props) => {
                 toogle();
               }}
               onContextMenu={e => {
-                e.preventDefault();
-                console.log(line);
-                return false;
+                // e.preventDefault();
+                // console.log(line);
+                // return false;
               }}
             >
               <li>{line.LINE_ID}</li>

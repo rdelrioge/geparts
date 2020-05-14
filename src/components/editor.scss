@@ -1,6 +1,8 @@
+@import "../styles.scss";
+
 .editorHeader{
   display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
   text-align: center;
   margin: 8px 0;
   .periodoClass{
@@ -13,60 +15,55 @@
     }
     .buttonsPeriodo{
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 2fr 1fr 2fr;;
       justify-items: center;
       button{
         width: 7em;
         margin: auto;
         background:none;
-        border: 2px dotted #46d0f7;
+        border: 2px dotted $primary;
         font-size: 14px;
         font-weight: 600;
         border-radius: 4px;
         cursor: pointer;
-        color: #46d0f7;
+        color: $primary;
         outline: none;
       }
       button:hover{
         background-color: rgba(87, 172, 241, 0.25);
       }
+      .hoyBtn{
+        width: fit-content;
+      }
     }
   }
-  .input {
-    display: contents;
-    .inputFile {
-      width: 0.1px;
-      height: 0.1px;
-      opacity: 0;
-      overflow: hidden;
-      position: absolute;
-      z-index: -1;
+  .actions{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 1em;
+    *{
+      font-size: 12px;
     }
-    .file-input__label,
-        .printBtn,
-        .okbtn {
-          margin: 1em;
-          cursor: pointer;
-          display: inline-flex;
-          justify-content: center;
-          align-items: center;
-          border-radius: 4px;
-          font-size: 14px;
-          font-weight: 600;
-          color: #46d0f7;
-          font-size: 14px;
-          padding: 10px 12px;
-          border: 2px dotted #46d0f7;
-        }
-  
-        .file-input__label:hover,
-        .printBtn:hover {
-          background-color: rgba(87, 172, 241, 0.25);
-        }
-        .printBtn,
-        .okbtn {
-          min-width: 178px;
-          background: none;
-        }
+    .dropdownOpts{
+      min-width: 10em;
+      margin-right: 1em;
+      background: transparent;
+      border: 2px solid $primary;
+      color: $primary;
+      // height: 3em;
+      .default{
+        color: $primary !important;
+      }
+    }
+    .buttonCSV{
+      height: 3em;
+      width: 4em;
+      min-width: 4em;
+      padding: 0;
+      input{
+        display: none;
+      }
+    }
   }
 }

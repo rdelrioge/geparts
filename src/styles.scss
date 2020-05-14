@@ -3,18 +3,27 @@
   // src: url("Inspira.ttf"); //para codesandbox
   src: url("./assets/Inspira.ttf"); //para vscode
 }
+html{
+  font-size: 15px;
+}
 
 body {
   overflow: hidden;
   padding: 0;
   margin: 0;
   background-color:#f5f5f5;
+  font-size: 15px !important;
+  line-height: 1.1em !important;
+  font-family: "inspira", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !important;
+}
+h1, h2, h3, h4, h5, h6{
+  font-family: "inspira", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !important;
 }
 
 * {
   box-sizing: border-box;
-  font-family: "inspira", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 a {
   padding: 10px 15px;
@@ -23,55 +32,13 @@ a {
   text-decoration: none;
 }
 
-.nav-bar {
-  width: 100vw;
-  display: flex;
-  background: white;
-  a{
-    margin: 0 auto;
-    font-size: 1.4em;
-    font-weight: bold;
-    background: -webkit-linear-gradient(45deg, #46d0f7, #7d2ae8);
-        -webkit-text-fill-color: transparent;
-        -webkit-background-clip: text;
-  }
+/* Colors for theme */
+// $primary: #46d0f7; //chinguEMR
+// $primary: #57acf1; //gehrsxtra
+$primary: #54c8ff; //semantic blue button
+$secondary: #3a5f81;
+
+:export {
+  primary: $primary;
+  secondary: $secondary;
 }
-
-.page {
-  padding: 10px 30px 50px 30px;
-  height: 100vh;
-  overflow-y: auto;
-  overflow-x: hidden;
-  position: fixed;
-  width: 100vw;
-}
-.firstSelector{
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-gap: 1em;
-  text-align: center;
-  align-items: center;
-  height: 100%;
-  a{
-    height: 80%;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    border-radius: 1em;
-    font-size: 2em;
-    background-color: white;
-    border: 2px solid #57acf1;
-    color: #57acf1;
-  }
-  a:hover{
-    color: white;
-    font-weight: bold;
-    background-color: #57acf1
-  }
-}
-
-
-
-
-
-

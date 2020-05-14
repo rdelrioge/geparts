@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useRef} from "react";
 import moment, { months } from 'moment'
 import 'moment/locale/es' 
 
@@ -7,13 +7,17 @@ import { db } from "../index";
 import { CSVToArray } from "./csvToArray";
 import Tabla from "./tabla";
 
+import { Dropdown,Button } from 'semantic-ui-react'
+
 const Edit = () => {
 
   let d = new Date();
   let mes = d.getMonth();
   let year = d.getFullYear();
-  const [miPeriodo, setMiPeriodo] = useState(moment(mes, 'DD/MM/YYYY').format('MMMM') + " " + year);
+  let now = moment(mes, 'DD/MM/YYYY').format('MMMM') + " " + year
+  const [miPeriodo, setMiPeriodo] = useState(now);
   const [filtro, setFiltro] = useState('');
+  const inputCSV = useRef(null);
 
   const [read, setRead] = useState(false);
   const [optionsOnSelect, setOptionsOnSelect] = useState([]);
@@ -21,6 +25,7 @@ const Edit = () => {
   const uploadData = e => {
     e.preventDefault();
     // detectar si es un archivo CSV
+
     if (
       e.target.files[0].name
         .split(".")
@@ -61,13 +66,14 @@ const Edit = () => {
           console.log(parentO[i]);
           
           // subir objeto a base de datos con autoID
-          db.collection("refas2")
-            .add(parentO[i])
-            .then(docRef => console.log("Doc written with ID: ", docRef.id))
-            .catch(err => console.log("Error addign doc: ", err));
+          // db.collection("refas2")
+          //   .add(parentO[i])
+          //   .then(docRef => console.log("Doc written with ID: ", docRef.id))
+          //   .catch(err => console.log("Error addign doc: ", err));
         }
       };
       reader.readAsText(e.target.files[0]);
+      e.target.value="";
     } else {
       alert("Please provide a valid CSV file");
     }
@@ -83,6 +89,17 @@ const Edit = () => {
     setMiPeriodo(miNewPeriodo);
   }
 
+  const setOptions = (arr) => {
+    let stateOptions = arr.map((state, index) => ({
+      key: index,
+      text: state,
+      value: state,
+    }))
+    console.log(stateOptions);
+    
+    setOptionsOnSelect(stateOptions)
+  }
+
   return (
     <div>
       <div className="editorHeader" >
@@ -93,27 +110,13 @@ const Edit = () => {
           </h2>
           <div className="buttonsPeriodo">
             <button onClick={()=>{mesAtras()}}  > {'<'} </button>
+            <button className="hoyBtn" onClick={()=>{setMiPeriodo(now)}}  > hoy </button>
             <button onClick={()=>{mesAdelante()}}  > {'>'} </button>
           </div>
         </div>
-        <div>
-          <select onFocus={() =>{ read ? setRead(false) : setRead(true)}} onChange={e => (e.target.value === '' ? null : setFiltro(e.target.value))} >
-            {
-              optionsOnSelect.length>0 ? (
-                <>
-                  <option value='' >Filtrar Checkpoint</option>
-                  {
-                    optionsOnSelect &&
-                      optionsOnSelect.map((opt, i) => (
-                        <option value={opt} key={i}> {opt} </option>
-                      )) 
-                  }
-                </>
-              ) :
-              <option value='' >Filtrar Checkpoint</option>
-            }
-          </select> 
-          <div className="input">
+        <div className="actions">
+          <Dropdown className="dropdownOpts" placeholder='Filtrar Checkpoint' clearable multiple selection options={optionsOnSelect} />
+          {/* <div className="input">
             <input
               className="inputFile"
               type="file"
@@ -123,10 +126,18 @@ const Edit = () => {
             <label className="file-input__label" htmlFor="file-input">
               <span>Subir CSV</span>
             </label>
-          </div>
+          </div> */}
+           <Button className="buttonCSV" inverted color="blue" onClick={() => inputCSV.current.click()} >
+             <input
+              className="inputFile"
+              type="file"
+              ref={inputCSV}
+              onChange={async e => uploadData(e)}
+            />
+            Subir CSV</Button>
         </div>
       </div>
-      <Tabla periodo={miPeriodo} filtro={filtro} read={read} datosfiltro={data => setOptionsOnSelect(data)} />
+      <Tabla periodo={miPeriodo} filtro={filtro} read={read} datosfiltro={data => setOptions(data)} />
     </div>
   );
 };

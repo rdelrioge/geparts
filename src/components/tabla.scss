@@ -1,5 +1,7 @@
+@import "../styles.scss";
+
 .tablaHeader {
-  background-color: #46d0f7;
+  background-color: $primary;
   color: white;
   font-weight: bold;
   font-size: 0.8em;
@@ -33,7 +35,7 @@
 
 .tabla::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: #46d0f7;
+  background-color: $primary;
 }
 .tabla:hover{
   overflow-y: scroll;
@@ -73,6 +75,7 @@
         background: none;
         border: none;
         outline: none;
+        fill: dimgray;
         svg{
           width: 22px;
           height: 22px;
@@ -85,7 +88,7 @@
       }
       button:hover{
         border-radius: 8px;
-        background-color: #46d0f7;
+        background-color: $primary;
         fill: white;
       }
       button:active{

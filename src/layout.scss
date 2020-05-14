@@ -1,0 +1,51 @@
+@import './styles.scss';
+
+.nav-bar {
+    width: 100vw;
+    display: flex;
+    background: white;
+    a{
+      margin: 0 auto;
+      font-size: 1.4em;
+      font-weight: bold;
+      // background: -webkit-linear-gradient(45deg, #46d0f7, #7d2ae8);
+      background: -webkit-linear-gradient(45deg, $primary, $secondary);
+          -webkit-text-fill-color: transparent;
+          -webkit-background-clip: text;
+    }
+  }
+  
+  .page {
+    padding: 10px 30px 50px 30px;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: fixed;
+    width: 100vw;
+  }
+  .firstSelector{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 1em;
+    text-align: center;
+    align-items: center;
+    height: 100%;
+    a{
+      height: 80%;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      border-radius: 1em;
+      font-size: 2em;
+      background-color: white;
+      border: 2px solid #57acf1;
+      color: #57acf1;
+    }
+    a:hover{
+      color: white;
+      font-weight: bold;
+      background-color: #57acf1
+    }
+  }
+  
+  

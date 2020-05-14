@@ -7,6 +7,7 @@ import { db } from "../index";
 const Tabla = (props) => {
   const [refacciones, setRefacciones] = useState([]);
   const [data, setData] = useState([]);
+  const [delmes, setDelMes] = useState([]);
   const [item, setItem] = useState();
   const [open, setOpen] = useState(false);
 
@@ -20,44 +21,49 @@ const Tabla = (props) => {
         misRefacciones.push(serv);
       });
       setRefacciones(misRefacciones);
-      let delmes = filterByProperty(
+      filterByProperty(
         [...misRefacciones],
         "periodo",
         props.periodo
-        );
-        setData(delmes);
+        ).then(data => {
+          setData(data);
+          setDelMes(data);
+          readOptions(data);
+        })
       });
   },[])
+
   // Filtrar por periodo
   useEffect(() => {
-      let delmes = filterByProperty(
+      filterByProperty(
         [...refacciones],
         "periodo",
         props.periodo
-      );
-      setData(delmes);
-      // reset select filtrado
-      props.datosfiltro([]);
+      ).then(data => {
+        setData(data);
+        setDelMes(data);
+        readOptions(data);
+        props.reset();
+      })
   }, [props.periodo]);
-
-  // Leer las opciones a poner en el Select
-  useEffect(() =>{
-    let newArrfull=[];
-    for(let i=0; i<data.length; i++){
-      newArrfull.push(data[i]["Último Checkpoint"])
-    }
-    // eliminar duplicados
-    let newArr = [...new Set(newArrfull)];
-    // enviar las opciones al Select en ParentComponent
-    props.datosfiltro(newArr)
-  },[data])
 
   // 
   useEffect(()=>{
-    console.log(props.filtro);
+    let newArrData = [];
+    if(props.filtro.length>0){
+      for(let i=0; i<props.filtro.length ; i++ ){
+        filterByProperty(delmes,"Último Checkpoint",props.filtro[i])
+        .then(datos => {
+          newArrData.push(...datos)
+        })
+        .then(a=>setData(newArrData))
+      }
+    }else{
+      setData(delmes);
+    }
   },[props.filtro])
 
-  const filterByProperty = (array, prop, value) => {
+  const filterByProperty = async(array, prop, value) => {
     var filtered = [];
     for (var i = 0; i < array.length; i++) {
       var obj = array[i];
@@ -68,13 +74,26 @@ const Tabla = (props) => {
     return filtered;
   };
 
+  const readOptions = (arr) =>{
+    let newArrfull=[];
+    for(let i=0; i<arr.length; i++){
+      newArrfull.push(arr[i]["Último Checkpoint"])
+    }
+    // eliminar duplicados
+    let newArr = [...new Set(newArrfull)];
+    // enviar las opciones al Select en ParentComponent
+    props.datosfiltro(newArr)
+  }
+
   const toogle = () => {
     open ? setOpen(false) : setOpen(true);
   };
+
   return (
     <div>
-      {data.length > 0 ? (
+      {data.length>0? (
         <>
+        <p className="totalLines" >Lineas totales: {data.length}</p>
         <ul className="tablaHeader">
           <li>LINE ID</li>
           <li>Order Number</li>

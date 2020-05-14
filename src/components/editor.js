@@ -15,17 +15,16 @@ const Edit = () => {
   let mes = d.getMonth();
   let year = d.getFullYear();
   let now = moment(mes, 'DD/MM/YYYY').format('MMMM') + " " + year
-  const [miPeriodo, setMiPeriodo] = useState(now);
-  const [filtro, setFiltro] = useState('');
-  const inputCSV = useRef(null);
 
-  const [read, setRead] = useState(false);
+  const [miPeriodo, setMiPeriodo] = useState(now);
+  const [filtro, setFiltro] = useState([]);
   const [optionsOnSelect, setOptionsOnSelect] = useState([]);
+
+  const inputCSV = useRef(null);
 
   const uploadData = e => {
     e.preventDefault();
     // detectar si es un archivo CSV
-
     if (
       e.target.files[0].name
         .split(".")
@@ -94,16 +93,18 @@ const Edit = () => {
       key: index,
       text: state,
       value: state,
-    }))
-    console.log(stateOptions);
-    
+    })) 
     setOptionsOnSelect(stateOptions)
+  }
+
+  const sendFilter = (e, {value}) => {
+    setFiltro(value);    
   }
 
   return (
     <div>
       <div className="editorHeader" >
-        <div>Ya funciona el select, falta CSS en el, y filtrar la data</div>
+        <div>Arreglar la altura de la tabla, relacion margin bottom</div>
         <div className="periodoClass">
           <h2>
             {miPeriodo}
@@ -115,29 +116,19 @@ const Edit = () => {
           </div>
         </div>
         <div className="actions">
-          <Dropdown className="dropdownOpts" placeholder='Filtrar Checkpoint' clearable multiple selection options={optionsOnSelect} />
-          {/* <div className="input">
+          <Dropdown className="dropdownOpts" placeholder='Filtrar Checkpoint' 
+            clearable multiple selection value={filtro} options={optionsOnSelect} onChange={(e, {value})=>setFiltro(value)}/>
+          <Button className="buttonCSV" inverted color="blue" onClick={() => inputCSV.current.click()} >
             <input
-              className="inputFile"
-              type="file"
-              id="file-input"
-              onChange={async e => uploadData(e)}
-            />
-            <label className="file-input__label" htmlFor="file-input">
-              <span>Subir CSV</span>
-            </label>
-          </div> */}
-           <Button className="buttonCSV" inverted color="blue" onClick={() => inputCSV.current.click()} >
-             <input
-              className="inputFile"
-              type="file"
-              ref={inputCSV}
-              onChange={async e => uploadData(e)}
-            />
-            Subir CSV</Button>
+            className="inputFile"
+            type="file"
+            ref={inputCSV}
+            onChange={e => uploadData(e)}
+          />
+          Subir CSV</Button>
         </div>
       </div>
-      <Tabla periodo={miPeriodo} filtro={filtro} read={read} datosfiltro={data => setOptions(data)} />
+      <Tabla periodo={miPeriodo} filtro={filtro} reset={() => setFiltro([])} datosfiltro={data => setOptions(data)} />
     </div>
   );
 };

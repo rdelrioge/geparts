@@ -1,5 +1,10 @@
 @import "../styles.scss";
 
+.totalLines{
+  margin: 0 0 0 1em;
+  font-weight: bold;
+  color: dimgray;
+}
 .tablaHeader {
   background-color: $primary;
   color: white;
@@ -43,7 +48,7 @@
 }
 .tabla {
   overflow-y: hidden;
-  height: 80vh;
+  height: calc(100vh - 30vh);
   margin: 0 1em 3em 1em;
   font-size: 0.8em;
   min-width: 80%;

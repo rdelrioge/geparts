@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Link } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
-import 'semantic-ui-css/semantic.min.css'
+import "semantic-ui-css/semantic.min.css";
 
 // Firebase
 import firebase from "firebase/app";
@@ -12,7 +12,7 @@ import "firebase/firestore";
 
 import "./styles.scss";
 import "./layout.scss";
-import Routes from "./Routes";
+import Routes from "./Routes.jsx";
 
 export const fb = firebase.initializeApp(fbconfig);
 export const db = fb.firestore();

@@ -98,6 +98,7 @@ const Edit = () => {
       text: state,
       value: state,
     }));
+    console.log(stateOptions);
     setOptionsOnSelect(stateOptions);
   };
 

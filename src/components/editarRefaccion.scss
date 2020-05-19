@@ -1,5 +1,16 @@
-.content {
+.contentActualizar {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-gap: 1em;
+  .metadata {
+    zoom: 90%;
+  }
+  .contentForm {
+    display: grid;
+    grid-template-rows: repeat(9, 1fr);
+    grid-gap: 1em;
+    grid-template-columns: 1fr 1fr;
+    zoom: 90%;
+    height: 1em;
+  }
 }

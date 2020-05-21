@@ -11,12 +11,25 @@ import posed, { PoseGroup } from "react-pose";
  * @param routePopped Used to manage direction of animation
  * @param rest All other props sent down
  */
+let hist = [];
+
 export const AnimatedSwitch = ({ history, location, children, ...rest }) => {
   /** Set reverse however you want. 
       I'm using a redux variable for back btn clicked. 
       This is just an example to alternate animation
    */
-  const reverse = location.pathname === "/";
+  let reverse = false;
+  if (location.pathname === "/") {
+    hist = [];
+    reverse = true;
+  } else {
+    hist.push(location.pathname);
+    if (hist[hist.length - 2] === "/fe/historial") {
+      reverse = true;
+    } else {
+      reverse = false;
+    }
+  }
 
   return (
     <PoseGroup
@@ -41,7 +54,7 @@ export const TIMING = {
   INSTANT: 0,
   FAST: 200,
   NORMAL: 400,
-  SLOW: 400
+  SLOW: 400,
 };
 
 /**
@@ -60,8 +73,8 @@ export const ContextRouteAnimation = posed.div({
     transition: {
       type: "tween",
       ease: "easeInOut",
-      duration: TIMING.SLOW
-    }
+      duration: TIMING.SLOW,
+    },
   },
   // exit: {
   //   // x: 0,
@@ -80,8 +93,8 @@ export const ContextRouteAnimation = posed.div({
     transition: {
       type: "tween",
       ease: "easeInOut",
-      duration: TIMING.SLOW
-    }
+      duration: TIMING.SLOW,
+    },
   },
   rightSide: {
     x: "100%",
@@ -90,7 +103,7 @@ export const ContextRouteAnimation = posed.div({
     transition: {
       type: "tween",
       ease: "easeInOut",
-      duration: TIMING.SLOW
-    }
-  }
+      duration: TIMING.SLOW,
+    },
+  },
 });

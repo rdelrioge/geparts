@@ -1,41 +1,48 @@
 import React from "react";
 import { Route, withRouter, Link } from "react-router-dom";
 import { AnimatedSwitch } from "./AnimatedSwitch";
-import Edit from "./components/editor";
+import Edit from "./components/operaciones/editor";
+import Dashboard from "./components/ingenieros/Dashboard";
 
 const home = () => (
   <div className="page">
     <div className="firstSelector">
-      <Link to="/readonly">Soy FE</Link>
-      <Link to="/edit">Operaciones</Link>
+      <Link to="/fe">Soy FE</Link>
+      <Link to="/op">Operaciones</Link>
     </div>
   </div>
 );
-const readonly = () => (
+
+const historial = () => (
   <div className="page">
-    <h1>Hello FE</h1>
+    <h1>Historial</h1>
+    <Link to="/fe">Back to Dashboard</Link>
   </div>
 );
 
 const routes = [
   {
     component: home,
-    path: "/"
+    path: "/",
   },
   {
-    component: readonly,
-    path: "/readonly"
+    component: Dashboard,
+    path: "/fe",
+  },
+  {
+    component: historial,
+    path: "/fe/historial",
   },
   {
     component: Edit,
-    path: "/edit"
-  }
+    path: "/op",
+  },
 ];
 
 const Routes = withRouter(({ location }) => {
   return (
     <AnimatedSwitch location={location}>
-      {routes.map(route => {
+      {routes.map((route) => {
         return (
           <Route
             exact

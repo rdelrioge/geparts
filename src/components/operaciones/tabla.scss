@@ -1,0 +1,123 @@
+@import "../../styles.scss";
+
+.totalLines {
+  margin: 0 0 0 1em;
+  font-weight: bold;
+  color: dimgray;
+}
+.tablaHeader {
+  background: linear-gradient(3deg, $primary 0%, $secondary 66%);
+  color: white;
+  font-weight: bold;
+  font-size: 0.8em;
+  border-bottom: none;
+  display: grid;
+  margin: 0 1em;
+  padding: 0;
+  grid-template-columns: repeat(24, 1fr);
+  li {
+    list-style: none;
+    text-align: center;
+    justify-content: center;
+    max-height: 4em;
+    display: flex;
+    align-items: center;
+    height: 3em;
+    overflow-y: auto;
+  }
+  li::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.tabla::-webkit-scrollbar {
+  width: 6px;
+  margin-right: -3px;
+}
+.tabla::-webkit-scrollbar-track {
+  display: none;
+}
+
+.tabla::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: $primary;
+}
+.tabla:hover {
+  overflow-y: scroll;
+  width: calc(100% - 20px);
+}
+.tabla {
+  overflow-y: hidden;
+  height: calc(100vh - 30vh);
+  margin: 0 1em 3em 1em;
+  font-size: 0.8em;
+  min-width: 80%;
+  ul:hover {
+    font-weight: bold;
+  }
+  ul.abierto:not(.tablaHeader) {
+    height: fit-content;
+    padding: 6px 0;
+    li {
+      max-height: fit-content;
+    }
+  }
+  ul {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+    grid-template-columns: repeat(24, 1fr);
+    li {
+      list-style: none;
+      text-align: center;
+      max-height: 4em;
+      max-width: 8em;
+      overflow-y: auto;
+      button {
+        padding: 0;
+        background: none;
+        border: none;
+        outline: none;
+        fill: dimgray;
+        svg {
+          width: 22px;
+          height: 22px;
+          zoom: 80%;
+        }
+        svg:hover {
+          margin: 3px;
+          zoom: 100%;
+        }
+      }
+      button:hover {
+        border-radius: 8px;
+        background-color: $primary;
+        fill: white;
+      }
+      button:active {
+        background-color: #44a8c3;
+        fill: white;
+      }
+    }
+    li::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .even {
+    background-color: white;
+  }
+  .odd {
+    background-color: aliceblue;
+    border-right: 1px solid lightgray;
+  }
+}
+
+.sinDatos {
+  color: dimgray;
+  display: flex;
+  height: 50vh;
+  justify-content: center;
+  align-items: center;
+}

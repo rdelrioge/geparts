@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import moment from "moment";
 
 import "./tabla.scss";
-import { db } from "../index";
+import { db } from "../../index";
 import EditarRefaccion from "./editarRefaccion";
 
 const Tabla = (props) => {
@@ -192,7 +192,11 @@ const Tabla = (props) => {
                   <li>{line["Receipt"]}</li>
                   <li>{line["Último Checkpoint"]}</li>
                   <li>{line["Comentarios"]}</li>
-                  <li>{line["Fecha de Ingreso a CC"]}</li>
+                  <li>
+                    {line["Fecha de Ingreso a CC"] === ""
+                      ? ""
+                      : moment(line["Fecha de Ingreso a CC"]).format("DD MMM")}
+                  </li>
                   <li>
                     <button
                       onClick={() => {
@@ -213,11 +217,13 @@ const Tabla = (props) => {
       ) : (
         <p className="sinDatos">No hay datos para este periodo</p>
       )}
-      <EditarRefaccion
-        refaccion={propsModal}
-        open={openModal}
-        closeModal={() => setOpenModal(false)}
-      />
+      {openModal ? (
+        <EditarRefaccion
+          refaccion={propsModal}
+          open={openModal}
+          closeModal={() => setOpenModal(false)}
+        />
+      ) : null}
     </div>
   );
 };

@@ -3,7 +3,7 @@ import moment from "moment";
 import "moment/locale/es";
 
 import "./editor.scss";
-import { db } from "../index";
+import { db } from "../../index";
 import { CSVToArray } from "./csvToArray.js";
 import Tabla from "./tabla";
 
@@ -109,7 +109,7 @@ const Edit = () => {
   return (
     <div>
       <div className="editorHeader">
-        <div>Arreglar la altura de la tabla, relacion margin bottom</div>
+        <div></div>
         <div className="periodoClass">
           <h2>{miPeriodo}</h2>
           <div className="buttonsPeriodo">
